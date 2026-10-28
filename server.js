@@ -8,7 +8,7 @@ app.get("/", (req, res)=>{
 })
 
 app.get("/about", (req, res)=>{
-    return res.send("Hello from about page");
+    return res.send("Hello from about page" + " hey " + req.query.name);
 });
 
 const myServer = http.createServer(app);
