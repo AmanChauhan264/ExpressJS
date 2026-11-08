@@ -7,6 +7,11 @@ const PORT = 8000;
 
 // Middleware - plugin
 app.use(express.urlencoded({extended: false})); 
+
+app.use((req, res, next)=>{
+    next();
+})
+
 app.use(express.json())
 app.get("/users", (req, res) =>{
     const html = `
