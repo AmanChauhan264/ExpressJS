@@ -7,7 +7,7 @@ const PORT = 8000;
 
 // Middleware - plugin
 app.use(express.urlencoded({extended: false})); 
-
+app.use(express.json())
 app.get("/users", (req, res) =>{
     const html = `
     <ul>
@@ -37,10 +37,20 @@ app.post("/api/users", (req, res)=>{
    });
 });
 
-app.patch("/api/users/:id", (req, res)=>{
-    // update new user with id
-    return res.json({status: "pending"});
-})
+app.patch("/api/users/:id", (req, res) => {
+    const id = Number(req.params.id);
+    const user = users.find((user) => user.id === id);
+    if (!user) {
+        return res.status(404).json({ status: "User not found" });
+    }
+    Object.assign(user, req.body);
+    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users, null, 2), (err) => {
+        if (err) {
+            return res.status(500).json({ status: "Error updating user" });
+        }
+        return res.json({ status: "success", user });
+    });
+});
 
 app.delete("/api/users/:id", (req, res) => {
     const id = Number(req.params.id);
