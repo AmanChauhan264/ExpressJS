@@ -38,6 +38,7 @@ app.post("/api/users", (req, res)=>{
 });
 
 app.patch("/api/users/:id", (req, res) => {
+    // update existing user
     const id = Number(req.params.id);
     const user = users.find((user) => user.id === id);
     if (!user) {
@@ -53,6 +54,7 @@ app.patch("/api/users/:id", (req, res) => {
 });
 
 app.delete("/api/users/:id", (req, res) => {
+    // delete a user
     const id = Number(req.params.id);
     const index = users.findIndex((user) => user.id === id);
     if (index === -1) {
