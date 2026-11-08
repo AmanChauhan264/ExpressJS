@@ -7998,5 +7998,13 @@
     "email": "eeasonrr@slashdot.org",
     "gender": "Female",
     "job_title": "Civil Engineer"
+  },
+  {
+    "first_name": "Aman",
+    "last_name": "Chauhan",
+    "email": "aman@gmail.com",
+    "gender": "Male",
+    "job_title": "Software Developer",
+    "id": 1001
   }
 ]
