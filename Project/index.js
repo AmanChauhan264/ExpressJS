@@ -2,11 +2,15 @@ const express = require("express");
 const fs = require("fs");
 const mongoose = require("mongoose");
 const users = require("./MOCK_DATA.json")
+require('dotenv').config();
 
 const app = express();
 const PORT = 8000;
 
-// collection
+// connection
+mongoose.connect(process.env.MONGO_URI)
+.then(() => console.log("MongoDB connected"))
+.catch((err) => console.log("Mongo Error", err));
 
 
 // schema
@@ -19,7 +23,7 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
     email:{
-        type: string,
+        type: String,
         required: true,
         unique: true,
     },
